@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="../indexPage.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+<style>
+    ol,
+ul,
+li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+.sneaker {
+	width: 10vh;
+	/* border: 2px solid black;
+	border-radius: 1%; */
+	margin: 0.5%;
+	margin-left: 0;
+	padding: 0;
+}
+.sneakerTitle {
+	margin: 0.25rem;
+}
+
+.sneaker:first-child {
+	margin-right: 0.5%;
+}
+@media (max-width: 470px) {
+	.sneaker {
+		width: 10%;
+		margin: 0.25%;
+		/* border: 2px solid black; */
+		margin-left: 0;
+	}
+	.sneaker:first-child {
+		margin-right: 0.5%;
+	}
+}
+@media (hover: hover) {
+	.sneaker:hover {
+		filter: grayscale(80%) blur(1px);
+		color: gray;
+		cursor: pointer;
+		transition: all 280ms ease-in-out;
+		display: block;
+	}
+}
+
+@media (min-width: 780px) {
+	.sneakerPopup {
+		margin-left: 69em;
+	}
+}
+footer {
+	height: 15%;
+	width: 100%;
+	margin-top: 0.5em;
+	background-color: black;
+	color: white;
+	text-align: center;
+	font-size: 1.25em;
+}
+footer span:hover {
+	color: lightgrey;
+	cursor: pointer;
+}
+footer a:hover {
+	color: lightgrey;
+}
+footer a {
+	width: 2rem;
+	color: white;
+	text-decoration: none;
+}
+footer a img {
+	width: 70px;
+}
+footer a img:hover {
+	filter: grayscale(80%);
+}
+.popupWindow {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 40vh;
+	padding-bottom: 40vh;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(0, 0, 0, 0.3);
+}
+.popupWindowContent {
+	background-color: #683faf;
+	color: white;
+	margin: auto;
+	padding: 2em;
+	border: 3px solid #000000;
+	border-radius: 10px;
+	width: 50%;
+	/* height: 10vh; */
+}
+
+</style>
+<body>
+<%- include('./partials/navbar.ejs')  %> 
+    <div class="popupWindow">
+        <div class="popupWindowContent">
+        <h2>Welcome to SosukicksWTB.ro!</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur dolor omnis quis similique, natus eaque
+            itaque? Magni dolores molestias maxime facere doloremque quisquam eligendi id qui atque temporibus, nobis
+            dolorum.</p>
+        <button class="closeButton btn btn-warning">Close this window</button>
+        </div>
+    </div>
+
+<div class="container">
+
+        <% for(let i = 0; i < items.length; i++) { %> 
+
+            <% if (i ===0 || i % 5  ===0) { %> 
+                <div class="row">
+                <% } %>
+                <% if(i===0 || i % 5 ===0) { %>
+                    <div class="col col-12-xl m-1 sneaker" onclick="renderSellForm()">
+
+                        <img src="<%=items[i].image%>" class="img-fluid sneakerImage">
+                        <div class="sneakerTitle">
+                            <h6> <%= items[i].model %> - <%= items[i].sku %> - <%= items[i].sizesNeeded %></h6>
+                        </div>
+
+                    </div> 
+
+          
+                <%  } else { %> 
+                    <div class="col col-12-xl m-1 sneaker" onclick="renderSellForm()">
+
+                        <img src="<%=items[i].image%>" class="img-fluid sneakerImage">
+                        <div class="sneakerTitle">
+                             <h6> <%= items[i].model %> - <%= items[i].sku %> - <%= items[i].sizesNeeded %></h6>
+                    </div>
+
+                    </div>
+                <% } %>
+
+            <%  if (i % 5  ===4) { %> 
+                </div>
+            <% } %> 
+
+        <% } %>
+</div>
+<%- include('./partials/footer.ejs') %>
+
+
+<script src="../popupWindow.js"></script>
+<script src="../hoverEffect.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<% layout('./layouts/boilerplate') %>
+
+    <div class="header">
+    <h1>Welcome to the Admin Panel!</h1>
+    <hr>
+    <h3>Add a sneaker:</h3>
+    </div>
+    <div class="addSneakerForm">
+    <form action="/sneakers" method="post">
+        <label for="sneaker">Sneaker Name (will be searched on stockX)</label>
+            <input type="text" name="searchTerm" id="sneaker">
+        <label for="size">Input a Size (any format)</label>
+            <input type="text" name="size" id="size"> 
+        <label for="password">Admin Password(tothemoon)</label>
+            <input type="text" name="password" id="password">
+        <button>Add Sneaker</button>
+    </form>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div class="deleteSneakerForm">
+    <form action="/sneakers/admin?_method=DELETE" method="POST">
+        <button>Delete Marked Sneakers</button>
+        <% items.forEach( function(item, index)  { %>
+            <h5> <a href="/sneakers/<%= item._id %>/edit " > <%= item.model %> </a> </h5>
+            <input type="checkbox" id="item<%=index%>" name="markedSneakers[]" value="<%= item._id%>"> 
+            <label for="item<%=index%>">Mark for deletion</label>
+            <hr>
+        <% }) %>
+    </div>
+    </form>
+    <!--// <% for( let item of items ) { %>
+        <h5> <a href="/sneakers/<%= item._id %>/edit "> <%= item.model %> </a> </h5>
+    <% } %> -->

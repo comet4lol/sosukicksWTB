@@ -1,0 +1,10 @@
+<% layout('./layouts/boilerplate') %>
+
+    <h1>Editing <%=  item.model %> - <%= id %>  </h1>
+    <form action="/sneakers/<%= id %>/edit?_method=PUT" method="POST">
+        <label for="sneaker">Sneaker Name (keep it stockX friendly)</label>
+        <input type="text" name="model" id="sneaker" value="<%= item.model %> ">
+        <label for="size">Input a Size (any format)</label>
+        <input type="text" name="size" id="size" value="<%= item.size %> ">
+        <button>Edit Sneaker</button>
+    </form>

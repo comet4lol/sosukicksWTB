@@ -1,0 +1,15 @@
+<% layout('./layouts/boilerplate') %>
+
+
+    <h1>Search Results (StockX)</h1>
+    <ul>
+        <% for(let product of foundProducts) { %>
+            <li>
+                <h3><%= product.name %> </h3>
+                <p>Retail: <%= product.retail %> </p>
+                <br>
+                <p>SKU/PID: <%= product.pid %> </p>
+                <img src="<%= product.image %> " alt="">
+            </li>
+        <% } %>
+    </ul>
