@@ -23,15 +23,7 @@ li {
 .sneaker:first-child {
 	margin-right: 0.5%;
 }
-@media (hover: hover) {
-	.sneaker:hover {
-		filter: grayscale(80%) blur(1px);
-		color: gray;
-		cursor: pointer;
-		transition: all 280ms ease-in-out;
-		display: block;
-	}
-}
+
 footer {
 	height: 15%;
 	width: 100%;
@@ -83,6 +75,6 @@ footer a img:hover {
 	border-radius: 10px;
 	width: 50%;
 }
-/* body {
+body {
 	background-color: red;
-} */
+}
