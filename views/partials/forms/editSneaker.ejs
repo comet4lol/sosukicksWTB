@@ -1,0 +1,13 @@
+<%= console.log(item) %> 
+<div>
+    <form action="/sneakers/<%= id %>/edit?_method=PUT" method="POST">
+        <label class="form-label" for="sneaker">Sneaker Name</label>
+        <input class="form-control" type="text" name="model" id="sneaker" value="<%=item.model%> ">
+
+        <label class="form-label" for="size">Input a Size</label>
+        <input class="form-control" type="text" name="size" id="size" value="<%=item.sizesNeeded[0]%> ">
+        <div class="form-text"> EU Only</div>
+
+        <button class="btn btn-primary">Edit Sneaker</button>
+    </form>
+</div>

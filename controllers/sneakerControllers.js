@@ -57,25 +57,27 @@ module.exports.updatedSearchSneaker = async (req, res, next) => {
 		};
 		return products;
 	});
-	//console.log(commonProducts);
-	while (commonProducts.length % 5 !=0) {
-		commonProducts.push({})
-	}
 	res.render('index.ejs', { items: commonProducts });
 };
 module.exports.addSneakerToDB = async (req, res, next) => {
 	try {
-		const { searchTerm, size, password } = req.body;
+		const { searchTerm, sizesNeeded, password } = req.body;
 		const searchResults = await stockX.searchProducts(searchTerm, { limit: 1 });
 
 		if (password === process.env.ADMIN_PASSWORD) {
-			let sneaker = new Sneaker({
-				model: searchResults[0].name,
-				size: size,
-				sku: searchResults[0].pid,
-				image: searchResults[0].image
-			});
-			await sneaker.save(), res.redirect('/sneakers');
+			// for(let i=0;i<sizesNeeded.length;i++) {
+				let sneaker = new Sneaker({
+					model: searchResults[0].name,
+					sizesNeeded,
+					sku: searchResults[0].pid,
+					image: searchResults[0].image
+				});
+			console.log(sizesNeeded)
+			console.log(sneaker)
+			await sneaker.save()
+		// }
+			 res.redirect('/sneakers');
+		
 		} else {
 			return res.send('corgeala');
 		}

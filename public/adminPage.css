@@ -1,0 +1,33 @@
+body {
+	background-color: red;
+}
+.addSneakerForm,
+.deleteSneakerForm,
+.header {
+	border: 2px solid green;
+	overflow: auto;
+}
+.header {
+	margin: auto;
+	text-align: center;
+	font-weight: 600;
+	font-size: 2em;
+	width: fit-content;
+	height: fit-content;
+}
+.addSneakerForm {
+	font-size: 1.25em;
+	width: 33%;
+	height: auto;
+}
+.deleteSneakerForm {
+	width: 33%;
+	height: 50em;
+	overflow: auto;
+}
+.adminPanel {
+	margin: 1.5em 0px;
+	display: flex;
+	flex-wrap: wrap;
+	border: 2px solid black;
+}

@@ -1,0 +1,54 @@
+<div class="addSneakerForm">
+    <form action="/sneakers" method="post">
+        <label class="form-label" for="sneaker">Sneaker Name </label>
+        <input class="form-control" type="text" name="searchTerm" id="sneaker">
+        <div class="form-text"> This item will be searched on StockX to fetch data.</div>
+
+        <label class="form-label" for="size">Input Sizes</label>
+        <!-- <input class="form-control" type="text" name="size" id="size"> -->
+        <div class="form-text"> EU Only</div>
+        <select name="sizesNeeded[]" multiple>
+            <option value="">Choose one or more sizes</option>
+            <!-- 35,
+			35.5,
+			 36 ,
+			 36.5 ,
+			 36.5 ,
+			 37 ,
+			 37.3 ,
+			 37.5,
+			 38 ,
+			 39 ,
+			 40 ,
+			 40.5 ,
+			 41 ,
+			 42 ,
+			 42.3,
+			 42.5 ,
+			 43 ,
+			 44 ,
+			 44.5 ,
+			 45 ,
+			 46 ,
+			 47 ,
+			 48 ,
+			 49  -->
+            <option value="35">35</option>
+            <option value="35.5">35.5</option>
+            <option value="36">36</option>
+            <option value="36.5">36.5</option>
+            <option value="37">37</option>
+            <option value="37.3">37 1/3</option>
+            <option value="37.5">37.5</option>
+            <option value="38">38</option>
+            <option value="39">39</option>
+            <option value="40">40</option>
+        </select>
+
+        <label class="form-label" for="password">Admin Password</label>
+        <input class="form-control" type="text" name="password" id="password">
+        <div class="form-text"> Hint: tothemoon</div>
+
+        <button class="btn btn-primary">Add Sneaker</button>
+    </form>
+</div>

@@ -1,0 +1,25 @@
+<div class="deleteSneakerForm">
+    <form action="/sneakers/admin?_method=DELETE" method="POST">
+        <button>Delete Marked Sneakers</button>
+        <% items.forEach( function(item, index)  { %>
+             <div class="input-group mb-3">
+                <div class="input-group-text py-0">
+                    <a class="form-control mx-2"href="/sneakers/<%= item._id %>/edit "> <%= item.model %> </a>
+                    <input class="form-check-input mt-0"type="checkbox" id="item<%=index%>" name="markedSneakers[]" value="<%= item._id%>">
+                </div>
+                    <!-- <label for="item<%=index%>">Mark for deletion</label> -->
+            </div>
+        <% }) %>
+    </form>
+</div>
+
+
+
+<!--
+ <div class="input-group mb-3">
+  <div class="input-group-text">
+    <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+  </div>
+  <input type="text" class="form-control" aria-label="Text input with checkbox">
+</div>
+ -->

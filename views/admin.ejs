@@ -1,33 +1,25 @@
-<% layout('./layouts/boilerplate') %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../adminPage.css">
+        <!-- <link rel="stylesheet" href="/../indexPage.css"> -->
 
-    <div class="header">
-    <h1>Welcome to the Admin Panel!</h1>
-    <hr>
-    <h3>Add a sneaker:</h3>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+</head>
+<body>
+    
+    <%-include('./partials/navbar.ejs')%>
+    <div class="header">Admin Panel</div>
+    <div class="adminPanel container p-0">
+    <%-include('./partials/forms/addSneaker')%> 
+    <%- include('./partials/forms/deleteSneaker')%>
     </div>
-    <div class="addSneakerForm">
-    <form action="/sneakers" method="post">
-        <label for="sneaker">Sneaker Name (will be searched on stockX)</label>
-            <input type="text" name="searchTerm" id="sneaker">
-        <label for="size">Input a Size (any format)</label>
-            <input type="text" name="size" id="size"> 
-        <label for="password">Admin Password(tothemoon)</label>
-            <input type="text" name="password" id="password">
-        <button>Add Sneaker</button>
-    </form>
-    </div>
-    <br>
-    <hr>
-    <br>
-    <div class="deleteSneakerForm">
-    <form action="/sneakers/admin?_method=DELETE" method="POST">
-        <button>Delete Marked Sneakers</button>
-        <% items.forEach( function(item, index)  { %>
-            <h5> <a href="/sneakers/<%= item._id %>/edit " > <%= item.model %> </a> </h5>
-            <input type="checkbox" id="item<%=index%>" name="markedSneakers[]" value="<%= item._id%>"> 
-            <label for="item<%=index%>">Mark for deletion</label>
-            <hr>
-        <% }) %>
-    </div>
-    </form>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+        </script>
+</body>
+</html>

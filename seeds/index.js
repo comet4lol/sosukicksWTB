@@ -21,30 +21,31 @@ let getRandomSize = () => {
 };
 const seedDB = async () => {
 	await Sneaker.deleteMany({});
-	for (let i = 0; i < 50; i++) {
+	for (let i = 0; i < 10; i++) {
 		const randomBrandNumber = Math.floor(Math.random() * 4);
 		const randomSizesNeeded = [];
 		for (let j = 0; j < 3; j++) {
-		randomSizesNeeded.push(getRandomSize());
+			randomSizesNeeded.push(getRandomSize());
+		}
+		const randomBrand = brands[randomBrandNumber].brand;
+		const randomProducts = await stockX.searchProducts(randomBrand, { limit: 5 });
+		for (let k = 0; k < 3; k++) {
+			const item = new Sneaker({
+				model: randomProducts[k].name,
+				sizesNeeded: randomSizesNeeded,
+				sku: randomProducts[k].pid,
+				image: randomProducts[k].image
+			});
+			await item.save();
+			console.log(item);
+		}
+		console.log('Seeded Item to DB.');
 	}
-	const randomBrand = brands[randomBrandNumber].brand;
-	const randomProducts = await stockX.searchProducts(randomBrand, { limit: 5 });
-	for (let k=0;k<5;k++) {
-		const item = new Sneaker({
-			model: randomProducts[k].name,
-			sizesNeeded: randomSizesNeeded[k],
-			sku: randomProducts[k].pid,
-			image: randomProducts[k].image
-		});
-	await item.save();
-	}
-	console.log('Seeded Item to DB.');
-}
 };
 
 try {
 	seedDB();
-	console.log('Successfully seeded database!')
+	console.log('Successfully seeded database!');
 } catch (e) {
 	console.log('Something bad happened!');
 	console.log(e);

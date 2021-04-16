@@ -8,10 +8,11 @@ li {
 	font: inherit;
 	vertical-align: baseline;
 }
-
+.sneakerGrid {
+	flex-wrap: nowrap;
+}
 .sneaker {
-	width: 10vh;
-
+	flex-wrap: nowrap;
 	margin: 0.5%;
 	margin-left: 0;
 	padding: 0;
@@ -20,9 +21,6 @@ li {
 	margin: 0.25rem;
 }
 
-.sneaker:first-child {
-	margin-right: 0.5%;
-}
 @media (hover: hover) {
 	.sneaker:hover {
 		filter: grayscale(80%) blur(1px);
@@ -83,6 +81,3 @@ footer a img:hover {
 	border-radius: 10px;
 	width: 50%;
 }
-/* body {
-	background-color: red;
-} */
