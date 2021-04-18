@@ -1,38 +1,14 @@
 <div class="addSneakerForm">
-    <form action="/sneakers" method="post">
+    <form action="/sneakers" method="post" class="needs-validation " novalidate>
         <label class="form-label" for="sneaker">Sneaker Name </label>
-        <input class="form-control" type="text" name="searchTerm" id="sneaker">
+        <input class="form-control" type="text" name="searchTerm" id="sneaker" required>
         <div class="form-text"> This item will be searched on StockX to fetch data.</div>
+        <div class="invalid-feedback">You must provide a name.</div>
 
         <label class="form-label" for="size">Input Sizes</label>
-        <!-- <input class="form-control" type="text" name="size" id="size"> -->
         <div class="form-text"> EU Only</div>
-        <select name="sizesNeeded[]" multiple>
-            <option value="">Choose one or more sizes</option>
-            <!-- 35,
-			35.5,
-			 36 ,
-			 36.5 ,
-			 36.5 ,
-			 37 ,
-			 37.3 ,
-			 37.5,
-			 38 ,
-			 39 ,
-			 40 ,
-			 40.5 ,
-			 41 ,
-			 42 ,
-			 42.3,
-			 42.5 ,
-			 43 ,
-			 44 ,
-			 44.5 ,
-			 45 ,
-			 46 ,
-			 47 ,
-			 48 ,
-			 49  -->
+        <select name="sizesNeeded[]" multiple class="form-select " required>
+            <option selected disabled value="">Choose one or more sizes</option>
             <option value="35">35</option>
             <option value="35.5">35.5</option>
             <option value="36">36</option>
@@ -43,12 +19,26 @@
             <option value="38">38</option>
             <option value="39">39</option>
             <option value="40">40</option>
+            <option value="40.5">40 2/3</option>
+            <option value="41">41</option>
+            <option value="42">42</option>
+            <option value="42.5">42.5</option>
+            <option value="43">43</option>
+            <option value="44">44</option>
+            <option value="44.5">44.5</option>
+            <option value="45">45</option>
+            <option value="46">46</option>
+            <option value="47">47</option>
+            <option value="48">48</option>
+            <option value="49">49</option>
         </select>
+        <div class="invalid-feedback">You must select atleast one size.</div>
 
-        <label class="form-label" for="password">Admin Password</label>
-        <input class="form-control" type="text" name="password" id="password">
-        <div class="form-text"> Hint: tothemoon</div>
+        <label class="form-label " for="password">Admin Password</label>
+        <input class="form-control" type="text" name="password" id="password" required>
+        <div class="invalid-feedback">tothemoon</div>
+        
 
-        <button class="btn btn-primary">Add Sneaker</button>
+        <button class="btn btn-primary" type="submit">Add Sneaker</button>
     </form>
 </div>

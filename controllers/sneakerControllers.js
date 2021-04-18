@@ -66,18 +66,15 @@ module.exports.addSneakerToDB = async (req, res, next) => {
 
 		if (password === process.env.ADMIN_PASSWORD) {
 			// for(let i=0;i<sizesNeeded.length;i++) {
-				let sneaker = new Sneaker({
-					model: searchResults[0].name,
-					sizesNeeded,
-					sku: searchResults[0].pid,
-					image: searchResults[0].image
-				});
-			console.log(sizesNeeded)
-			console.log(sneaker)
-			await sneaker.save()
-		// }
-			 res.redirect('/sneakers');
-		
+			let sneaker = new Sneaker({
+				model: searchResults[0].name,
+				sizesNeeded,
+				sku: searchResults[0].pid,
+				image: searchResults[0].image
+			});
+			await sneaker.save();
+			// }
+			res.redirect('/sneakers');
 		} else {
 			return res.send('corgeala');
 		}
