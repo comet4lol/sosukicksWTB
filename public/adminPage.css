@@ -31,3 +31,36 @@ body {
 	flex-wrap: wrap;
 	border: 2px solid black;
 }
+.popupWindow {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0, 0, 0);
+	background-color: rgba(255, 255, 255, 1);
+}
+.popupWindowContent {
+	background-color: #683faf;
+	display: flex;
+	justify-content: center;
+	color: white;
+	width: 20%;
+	padding: 3em;
+	/* margin: auto; */
+	/* height: 150px; */
+	border: 3px solid #000000;
+	border-radius: 10px;
+}
+.passwordInput {
+	width: 100%;
+	height: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+.editSneakerForm {
+	display: none;
+}

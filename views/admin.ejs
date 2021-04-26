@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="../adminPage.css">
+    <link rel="stylesheet" href="/../adminPage.css">
         <!-- <link rel="stylesheet" href="/../indexPage.css"> -->
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -13,14 +13,25 @@
 <body>
     
     <%-include('./partials/navbar.ejs')%>
+    <div class="popupWindow">
+        <div class="popupWindowContent">
+            <div class="passwordInput">
+                <h1>Input Admin Password</h1>
+                <input type="password" placeholder="tothemoon" id="adminInput">
+                <a href="#" class="btn btn-warning" id="submitButton">Submit</a>
+            </div>
+        </div>
+    </div>
     <div class="header">Admin Panel</div>
     <div class="adminPanel container p-0">
     <%-include('./partials/forms/addSneaker')%> 
     <%- include('./partials/forms/deleteSneaker')%>
     </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
         </script>
+    <script src="../adminPopupWindow.js"></script>
     <script src="/../formValidation.js"></script>
 </body>
 </html>

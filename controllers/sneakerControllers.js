@@ -83,9 +83,11 @@ module.exports.addSneakerToDB = async (req, res, next) => {
 	}
 };
 module.exports.editSneaker = async (req, res) => {
-	const { model, size } = req.body;
+	let { model, sizesNeeded } = req.body;
 	const { id } = req.params;
-	await Sneaker.findByIdAndUpdate(id, { model, size });
+	if (sizesNeeded) {
+		await Sneaker.findByIdAndUpdate(id, { model, sizesNeeded });
+	} else await Sneaker.findByIdAndUpdate(id, { model });
 	res.redirect('/sneakers/admin');
 };
 module.exports.adminDelete = async (req, res) => {

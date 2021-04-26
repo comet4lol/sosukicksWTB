@@ -2,8 +2,6 @@ let popupWindow = document.getElementsByClassName('popupWindow')[0];
 
 let closeButton = document.getElementsByClassName('closeButton')[0];
 
-//let openButton = document.getElementsByClassName('openButton')[0];
-
 window.onload = function() {
 	popupWindow.style.display = 'block';
 };
