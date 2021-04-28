@@ -2,9 +2,10 @@
     <form action="/sneakers/admin?_method=DELETE" method="POST">
         <button class="btn btn-warning my-2">Delete Marked Sneakers</button>
         <% items.forEach( function(item, index)  { %>
-             <div class="input-group mb-3">
-                <div class="input-group-text py-0">
-                    <a class="form-control btn btn-info ml-2"href="/sneakers/<%= item._id %>/edit "> <%= item.model %> </a>
+             <div class="input-group mb-3 p-0">
+                <div class="input-group-text m-0 p-0">
+                    <!-- <a class="form-control btn btn-info ml-2"href="/sneakers/<%= item._id %>/edit "> <%= item.model %> </a> -->
+                    <p onclick="renderEditPage(event)"class="btn btn-info m-0"><%= item.model %> <span class="d-none"> <%= item._id %> </span></p> 
                     <input class="form-check-input mt-0"type="checkbox" id="item<%=index%>" name="markedSneakers[]" value="<%= item._id%>">
                 </div>
             </div>

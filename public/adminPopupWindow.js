@@ -14,7 +14,6 @@ window.onload = function() {
 
 submitButton.onclick = function(event) {
 	let adminInput = document.querySelector('#adminInput');
-	console.dir(adminInput);
 	if (adminInput.value == 'tothemoon') {
 		popupWindow.style.display = 'none';
 		adminPanel.style.display = 'flex';
