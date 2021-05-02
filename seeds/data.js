@@ -7,10 +7,10 @@ module.exports.brands = [
 	},
 	{
 		brand: 'Jordan'
-	},
-	{
-		brand: 'OFF-WHITE'
 	}
+	// {
+	// 	brand: 'OFF-WHITE'
+	// }
 ];
 module.exports.sizes = [
 	'35',

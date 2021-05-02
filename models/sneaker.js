@@ -34,12 +34,12 @@ const SneakerSchema = new Schema({
 				47,
 				48,
 				49
-			]
+			],
+			required: true
 		}
 	],
-	sku: {
-		type: String
-	},
+	brand: String,
+	sku: String,
 	image: {
 		type: String,
 		required: true

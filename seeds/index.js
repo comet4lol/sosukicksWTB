@@ -19,34 +19,53 @@ db.once('open', () => {
 let getRandomSize = () => {
 	return sizes[Math.floor(Math.random() * (sizes.length - 1))];
 };
+let getRandomSizes = (number) => {
+	let sizes = [];
+	for (let j = 0; j < number; j++) {
+		sizes.push(getRandomSize());
+	}
+	return sizes;
+};
+let fiftyPercent = () => {
+	if (Math.random() > 0.47) return true;
+	else return false;
+};
 const seedDB = async () => {
 	await Sneaker.deleteMany({});
-	for (let i = 0; i < 10; i++) {
-		const randomBrandNumber = Math.floor(Math.random() * 4);
-		const randomSizesNeeded = [];
-		for (let j = 0; j < 3; j++) {
-			randomSizesNeeded.push(getRandomSize());
-		}
-		const randomBrand = brands[randomBrandNumber].brand;
-		const randomProducts = await stockX.searchProducts(randomBrand, { limit: 5 });
+	for (let i = 0; i <= 15; i++) {
+		const randomBrandNumber = Math.floor(Math.random() * 3);
+		// const randomSizesNeeded = [];
+		// for (let j = 0; j < 3; j++) {
+		// 	randomSizesNeeded.push(getRandomSize());
+		// }
+		let randomBrand = brands[randomBrandNumber].brand;
+		if (fiftyPercent() && randomBrand == 'Nike') randomBrand += '  Dunk Low';
+		else if (fiftyPercent() && randomBrand == 'Nike') randomBrand += '  Travis Scott';
+		else if (fiftyPercent() && randomBrand == 'Nike') randomBrand += '  Fear of God';
+
+		if (fiftyPercent() && randomBrand == 'Adidas') randomBrand += '   Yeezy 350v2';
+		else if (fiftyPercent() && randomBrand == 'Adidas') randomBrand += '   Yeezy';
+		else if (fiftyPercent() && randomBrand == 'Adidas') randomBrand += '   Ultraboost';
+
+		if (fiftyPercent() && randomBrand == 'Jordan') randomBrand += '  1 High Retro';
+		else if (fiftyPercent() && randomBrand == 'Jordan') randomBrand += '  Retro 4';
+		else if (fiftyPercent() && randomBrand == 'Jordan') randomBrand += ' 1 Low';
+		console.log(randomBrand);
+		const randomProducts = await stockX.searchProducts(randomBrand, { limit: 8 });
 		for (let k = 0; k < 3; k++) {
+			let randomSizesNeeded = getRandomSizes(3);
 			const item = new Sneaker({
 				model: randomProducts[k].name,
 				sizesNeeded: randomSizesNeeded,
+				brand: brands[randomBrandNumber].brand,
 				sku: randomProducts[k].pid,
 				image: randomProducts[k].image
 			});
 			await item.save();
-			console.log(item);
+			// console.log(item);
 		}
 		console.log('Seeded Item to DB.');
+		if (i === 15) console.log('Successfully seeded DB!');
 	}
 };
-
-try {
-	seedDB();
-	console.log('Successfully seeded database!');
-} catch (e) {
-	console.log('Something bad happened!');
-	console.log(e);
-}
+seedDB();
