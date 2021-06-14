@@ -8,6 +8,10 @@ li {
 	font: inherit;
 	vertical-align: baseline;
 }
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 400;
+}
 :root {
 	--bs-color: #0f0f0f !important;
 	--main-black: #0f0f0f;
@@ -21,6 +25,7 @@ nav {
 
 .sneakerGrid {
 	flex-wrap: nowrap;
+	font-family: 'Bebas Neue', cursive;
 }
 .sneaker {
 	flex-wrap: nowrap;
@@ -30,9 +35,12 @@ nav {
 }
 .sneakerTitle {
 	margin: 0.25rem;
-	text-align: center;
+	text-align: left;
+	font-size: 1.5em;
 }
-
+.sneakerSizes {
+	color: #672dc5;
+}
 @media (hover: hover) {
 	.sneaker:hover {
 		filter: grayscale(80%) blur(1px);
@@ -83,11 +91,11 @@ footer a img:hover {
 	place-items: center;
 	/* overflow: visible; */
 	background-color: rgb(0, 0, 0);
-	background-color: rgba(0, 0, 0, 0.3);
+	background-color: rgba(0, 0, 0, 0.4);
 }
 .popupWindowContent {
 	place-self: center;
-	background-color: #6f25bf;
+	background-color: #672dc5;
 	color: white;
 	margin: auto;
 	padding: 2em;
