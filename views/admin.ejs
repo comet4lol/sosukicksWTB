@@ -15,10 +15,10 @@
     <%-include('./partials/navbar.ejs')%>
     <div class="popupWindow">
         <div class="popupWindowContent">
-            <div class="passwordInput">
-                <h1>Input Admin Password</h1>
-                <input type="password" placeholder="tothemoon" id="adminInput">
-                <a href="#" class="btn btn-warning" id="submitButton">Submit</a>
+            <div class="passwordInput d-grid gap-2">
+                <p>Input Admin Password</p>
+                <input type="password" placeholder="tothemoon" id="adminInput" class="form-control mb-2">
+                <a href="#" class="btn btn-warning btn-block" id="submitButton">Submit</a>
             </div>
         </div>
     </div>
@@ -33,6 +33,6 @@
         </script>
     <script src="../adminPopupWindow.js"></script>
     <script src="/../formValidation.js"></script>
-    <script src="../editForm.js"></script>
+    <script src="../editForm.js"></script> 
 </body>
 </html>

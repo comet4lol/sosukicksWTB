@@ -8,6 +8,17 @@ li {
 	font: inherit;
 	vertical-align: baseline;
 }
+:root {
+	--bs-color: #0f0f0f !important;
+	--main-black: #0f0f0f;
+	--main-white: #fbf5f3;
+	--main-purple: #6f25bf;
+}
+nav {
+	background-color: var(--main-black);
+	color: var(--main-white);
+}
+
 .sneakerGrid {
 	flex-wrap: nowrap;
 }
@@ -62,19 +73,21 @@ footer a img:hover {
 	display: none;
 	position: fixed;
 	z-index: 1;
-	padding-top: 40vh;
-	padding-bottom: 40vh;
+	padding: 15% 0%;
 	left: 0px;
 	right: 0px;
 	top: 0px;
 	width: 100%;
 	height: 100%;
-	overflow: visible;
+	display: grid;
+	place-items: center;
+	/* overflow: visible; */
 	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.3);
 }
 .popupWindowContent {
-	background-color: #683faf;
+	place-self: center;
+	background-color: #6f25bf;
 	color: white;
 	margin: auto;
 	padding: 2em;

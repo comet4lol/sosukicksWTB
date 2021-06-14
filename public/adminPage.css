@@ -1,6 +1,16 @@
 body {
 	background-color: red;
 }
+:root {
+	--bs-color: #0f0f0f;
+	--main-black: #0f0f0f;
+	--main-white: #fbf5f3;
+	--main-purple: #6f25bf;
+}
+nav {
+	background-color: var(--main-black);
+	color: var(--main-white);
+}
 .addSneakerForm,
 .deleteSneakerForm,
 .header {
@@ -35,23 +45,24 @@ body {
 	display: none;
 	position: fixed;
 	z-index: 1;
+	padding: 15% 0%;
 	left: 0px;
 	right: 0px;
 	top: 0px;
 	width: 100%;
 	height: 100%;
+
 	background-color: rgb(0, 0, 0);
 	background-color: rgba(255, 255, 255, 1);
 }
 .popupWindowContent {
-	background-color: #683faf;
+	background-color: #6f25bf;
 	display: flex;
 	justify-content: center;
 	color: white;
 	width: 20%;
 	padding: 3em;
-	/* margin: auto; */
-	/* height: 150px; */
+
 	border: 3px solid #000000;
 	border-radius: 10px;
 }
@@ -60,6 +71,10 @@ body {
 	height: 100%;
 	padding: 0px;
 	margin: 0px;
+}
+.passwordInput p {
+	font-size: 1.72em;
+	font-weight: 600;
 }
 .editSneakerForm {
 	display: none;

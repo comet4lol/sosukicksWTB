@@ -5,7 +5,7 @@
         <input class="form-control" type="text" name="model" id="sneaker" value="<%=item.model%> " required>
 
         <label class="form-label" for="sizesNeeded">Input a Size</label>
-        <select name="sizesNeeded[]" multiple class="form-select " id="size" >
+        <select name="sizesNeeded[]" multiple class="form-select " id="size" required>
             <option value="<%=item.sizesNeeded %>">Keep current sizes: <%= item.sizesNeeded %>  </option>
             <option value="35">35</option>
             <option value="35.5">35.5</option>
