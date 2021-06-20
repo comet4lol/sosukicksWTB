@@ -32,6 +32,7 @@ nav {
 	margin: 0.5%;
 	margin-left: 0;
 	padding: 0;
+	cursor: pointer;
 }
 .sneakerTitle {
 	margin: 0.25rem;
@@ -41,7 +42,7 @@ nav {
 .sneakerSizes {
 	color: #672dc5;
 }
-@media (hover: hover) {
+/* @media (hover: hover) {
 	.sneaker:hover {
 		filter: grayscale(80%) blur(1px);
 		color: gray;
@@ -49,7 +50,7 @@ nav {
 		transition: all 280ms ease-in-out;
 		display: block;
 	}
-}
+} */
 footer {
 	height: 15%;
 	width: 100%;

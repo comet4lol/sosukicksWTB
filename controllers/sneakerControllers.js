@@ -12,8 +12,47 @@ module.exports.renderHomePage = (req, res) => {
 	res.render('../views/home.ejs');
 };
 module.exports.renderIndexPage = async (req, res) => {
-	const items = await Sneaker.find({});
-	res.render('index.ejs', { items });
+	if (req.query != {} || req.query.filter != undefined) {
+		const sneakers = await Sneaker.find({});
+		const { filter } = req.query;
+		// console.log(filter);
+		if (filter == '' || filter == 'all' || filter == undefined) {
+			res.render('index.ejs', { items: sneakers });
+		}
+		const options = {
+			keys: [
+				{
+					name: 'model',
+					weight: 0.5
+				},
+				{
+					name: 'sku',
+					weight: 100
+				}
+			],
+			shouldSort: true,
+			threshold: 0.2,
+			ignoreLocation: true,
+			ignoreFieldNorm: true
+		};
+		const fuse = new Fuse(sneakers, options);
+		let items = fuse.search({
+			$or: [ { model: filter }, { sku: filter } ]
+		});
+		let commonProducts = items.map((items) => {
+			let products = {
+				model: items.item.model,
+				sizesNeeded: items.item.sizesNeeded.length === 0 ? 'Cannot find size' : items.item.sizesNeeded,
+				sku: items.item.sku,
+				image: items.item.image
+			};
+			return products;
+		});
+		res.render('index.ejs', { items: commonProducts });
+	} else {
+		let defaultItems = await Sneaker.find({});
+		res.render('index.ejs', { items: defaultItems });
+	}
 };
 module.exports.renderAdminPage = async (req, res) => {
 	const items = await Sneaker.find({});
@@ -25,47 +64,48 @@ module.exports.renderEditPage = async (req, res) => {
 	res.render('edit.ejs', { id, item });
 };
 
-module.exports.updatedSearchSneaker = async (req, res, next) => {
-	const sneakers = await Sneaker.find({});
-	const { filter } = req.query;
-	const options = {
-		keys: [
-			{
-				name: 'model',
-				weight: 0.5
-			},
-			{
-				name: 'sku',
-				weight: 100
-			}
-		],
-		shouldSort: true,
-		threshold: 0.2,
-		ignoreLocation: true,
-		ignoreFieldNorm: true
-	};
-	const fuse = new Fuse(sneakers, options);
-	let items = fuse.search({
-		$or: [ { model: filter }, { sku: filter } ]
-	});
-	let commonProducts = items.map((items) => {
-		let products = {
-			model: items.item.model,
-			sizesNeeded: items.item.sizesNeeded.length === 0 ? 'Cannot find size' : items.item.sizesNeeded,
-			sku: items.item.sku,
-			image: items.item.image
-		};
-		return products;
-	});
-	res.render('index.ejs', { items: commonProducts });
-};
+// module.exports.updatedSearchSneaker = async (req, res, next) => {
+// 	const sneakers = await Sneaker.find({});
+// 	const { filter } = req.query;
+// 	const options = {
+// 		keys: [
+// 			{
+// 				name: 'model',
+// 				weight: 0.5
+// 			},
+// 			{
+// 				name: 'sku',
+// 				weight: 100
+// 			}
+// 		],
+// 		shouldSort: true,
+// 		threshold: 0.2,
+// 		ignoreLocation: true,
+// 		ignoreFieldNorm: true
+// 	};
+// 	const fuse = new Fuse(sneakers, options);
+// 	let items = fuse.search({
+// 		$or: [ { model: filter }, { sku: filter } ]
+// 	});
+// 	let commonProducts = items.map((items) => {
+// 		let products = {
+// 			model: items.item.model,
+// 			sizesNeeded: items.item.sizesNeeded.length === 0 ? 'Cannot find size' : items.item.sizesNeeded,
+// 			sku: items.item.sku,
+// 			image: items.item.image
+// 		};
+// 		return products;
+// 	});
+// 	res.render('index.ejs', { items: commonProducts });
+// };
 module.exports.addSneakerToDB = async (req, res, next) => {
 	try {
-		const { searchTerm, sizesNeeded, password } = req.body;
+		const { searchTerm, sizesNeeded, password,imageURL } = req.body;
+		
 		const searchResults = await stockX.searchProducts(searchTerm, { limit: 1 });
-
-		if (password === process.env.ADMIN_PASSWORD) {
-			// for(let i=0;i<sizesNeeded.length;i++) {
+		
+		if (( searchResults != [] && searchResults[0] != undefined) && (password === process.env.ADMIN_PASSWORD)  ) {
+			console.log(searchResults[0])
 			let sneaker = new Sneaker({
 				model: searchResults[0].name,
 				sizesNeeded,
@@ -73,10 +113,16 @@ module.exports.addSneakerToDB = async (req, res, next) => {
 				image: searchResults[0].image
 			});
 			await sneaker.save();
-			// }
 			res.redirect('/sneakers');
 		} else {
-			return res.send('corgeala');
+			let sneaker = new Sneaker({
+				model: searchTerm,
+				sizesNeeded,
+				sku: 'NO AVAILABLE SKU',
+				image: imageURL
+			});
+			await sneaker.save();
+			res.redirect('/sneakers');
 		}
 	} catch (e) {
 		next(e);

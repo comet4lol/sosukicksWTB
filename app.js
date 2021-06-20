@@ -81,7 +81,7 @@ app.get('/', sneakers.renderHomePage);
 app.get('/sneakers', sneakers.renderIndexPage);
 app.get('/sneakers/admin', sneakers.renderAdminPage);
 app.get('/sneakers/:id/edit', sneakers.renderEditPage);
-app.get('/sneakers/filter/', sneakers.updatedSearchSneaker);
+// app.get('/sneakers/filter/', sneakers.updatedSearchSneaker);
 app.post('/sneakers', sneakers.addSneakerToDB);
 app.put('/sneakers/:id/edit', sneakers.editSneaker);
 app.delete('/sneakers/admin', sneakers.adminDelete);
