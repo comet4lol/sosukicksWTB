@@ -11,24 +11,56 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+Pro&display=swap" rel="stylesheet">    <link rel="stylesheet" href="/../indexPage.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
-        
+    <link rel="stylesheet" href="/public/fonts/stylesheet.css" type="text/css" charset="utf-8" />
 </head>
 
 <body>
+<!-- Messenger Chat Plugin Code -->
+<div id="fb-root"></div>
+
+<!-- Your Chat Plugin code -->
+<div id="fb-customer-chat" class="fb-customerchat">
+</div>
+
+<script>
+    var chatbox = document.getElementById('fb-customer-chat');
+    chatbox.setAttribute("page_id", "107024651249706");
+    chatbox.setAttribute("attribution", "biz_inbox");
+
+    window.fbAsyncInit = function () {
+        FB.init({
+            xfbml: true,
+            version: 'v11.0'
+        });
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
     <div class="fb-customerchat" page_id="<PAGE_ID>"></div>
     <%- include("./partials/facebookPlugin.ejs")  %> 
     <%- include('./partials/navbar.ejs')  %>
     <div class="popupWindow">
         <div class="popupWindowContent">
-            <h1>Welcome to SosukicksWTB.ro!</h1>
-            <p>In front of you is a list of all the sneakers that we currently are looking to buy from you. You can use the search bar in the top-left corner to narrow down our results </p>
+            <h1>Start selling to SosuKicks!</h1>
+            <p>You can find the sneakers we are currently looking for on our real-time updated WTB webpage. <br>
+            </p>
+            <!-- <p>In front of you is a list of all the sneakers that we currently are looking to buy from you. You can use the search bar in the top-left corner to narrow down our results. </p> -->
             <h3>How does this work?</h3>
+            <p>We are only interested in deadstock/brand new sneakers in their original box, without any flaws/defects.</p>
             <p>Click on any sneaker that you want to sell and then you will be redirected to a typeform. After submiting it , we will contact you if we are interested in your offer.</p>
             
     
             <button class="closeButton btn btn-warning">Close this window</button>
         </div>
     </div>
+    
 
     <div class="container sneakerGrid"> 
          <%  while(items.length % 4 !=0) { %>
@@ -45,7 +77,7 @@
         <div class="row">
             <% } %>
             <% if(i===0 || i % 4 ===0) { %>
-            <div class="col-md m-1 sneaker" onclick="renderSellForm()">
+            <div class="col-md m-5 sneaker" onclick="renderSellForm()">
 
                 <img src="<%= items[i].image %>" class="img-fluid sneakerImage">
                 <div class="sneakerTitle">
@@ -60,7 +92,7 @@
 
 
             <%  } else { %>
-            <div class="col-md m-1 sneaker" onclick="renderSellForm()">
+            <div class="col-md m-5 sneaker" onclick="renderSellForm()">
 
                 <img src="<%= items[i].image%> " class="img-fluid sneakerImage">
                 <div class="sneakerTitle">

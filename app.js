@@ -6,6 +6,7 @@ const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const sneakers = require('./controllers/sneakerControllers.js');
 const helmet = require('helmet');
+const cookieParser = require('cookie-parser');
 
 require('dotenv').config();
 
@@ -74,6 +75,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(cookieParser());
 
 express.json({ extended: true });
 

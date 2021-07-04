@@ -29,7 +29,7 @@ nav {
 }
 .sneaker {
 	flex-wrap: nowrap;
-	margin: 0.5%;
+	margin: 10%;
 	margin-left: 0;
 	padding: 0;
 	cursor: pointer;

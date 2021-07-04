@@ -6,12 +6,14 @@ const Sneaker = require('../models/sneaker');
 const Fuse = require('fuse.js');
 const StockXAPI = require('stockx-api');
 const stockX = new StockXAPI();
+
 app.engine('ejs', ejsMate);
 
 module.exports.renderHomePage = (req, res) => {
 	res.render('../views/home.ejs');
 };
 module.exports.renderIndexPage = async (req, res) => {
+	res.cookie('readPopup', true, { maxAge: 432000000 });
 	if (req.query != {} || req.query.filter != undefined) {
 		const sneakers = await Sneaker.find({});
 		const { filter } = req.query;
@@ -48,10 +50,10 @@ module.exports.renderIndexPage = async (req, res) => {
 			};
 			return products;
 		});
-		res.render('index.ejs', { items: commonProducts });
+		res.render('index.ejs', { items: commonProducts, cookies: req.cookies });
 	} else {
 		let defaultItems = await Sneaker.find({});
-		res.render('index.ejs', { items: defaultItems });
+		res.render('index.ejs', { items: defaultItems, cookies: req.cookies });
 	}
 };
 module.exports.renderAdminPage = async (req, res) => {
@@ -100,12 +102,12 @@ module.exports.renderEditPage = async (req, res) => {
 // };
 module.exports.addSneakerToDB = async (req, res, next) => {
 	try {
-		const { searchTerm, sizesNeeded, password,imageURL } = req.body;
-		
+		const { searchTerm, sizesNeeded, password, imageURL } = req.body;
+
 		const searchResults = await stockX.searchProducts(searchTerm, { limit: 1 });
-		
-		if (( searchResults != [] && searchResults[0] != undefined) && (password === process.env.ADMIN_PASSWORD)  ) {
-			console.log(searchResults[0])
+
+		if (searchResults != [] && searchResults[0] != undefined && password === process.env.ADMIN_PASSWORD) {
+			console.log(searchResults[0]);
 			let sneaker = new Sneaker({
 				model: searchResults[0].name,
 				sizesNeeded,
