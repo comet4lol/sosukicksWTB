@@ -1,11 +1,11 @@
 <div class="addSneakerForm">
     <form action="/sneakers" method="post" class="needs-validation " novalidate>
-        <label class="form-label" for="sneaker">Sneaker Name </label>
+        <label class="form-label " for="sneaker">Sneaker Name </label>
         <input class="form-control" type="text" name="searchTerm" id="sneaker" required>
         <div class="form-text"> This item will be searched on StockX to fetch data.</div>
         <div class="invalid-feedback">You must provide a name.</div>
 
-        <label class="form-label" for="size">Input Sizes</label>
+        <label class="form-label mt-4" for="size">Input Sizes</label>
         <div class="form-text"> EU Only</div>
         <select name="sizesNeeded[]" multiple class="form-select " id="size" required>
             <option disabled value="">Choose one or more sizes</option>
@@ -34,13 +34,25 @@
         </select>
         <div class="invalid-feedback">You must select atleast one size.</div>
 
-        <label class="form-label " for="password">Admin Password</label>
+        <label class="form-label mt-4" for="password">Admin Password</label>
         <input class="form-control" type="text" name="password" id="password" required>
         <div class="invalid-feedback">tothemoon</div>
         
-        <label class="form-label" for="imageurl">Image URL (optional)</label>
+        <label class="form-label mt-4" for="tags"> Add Tags</label>
+        <select name="tags[]" multiple class="form-select" id="tags" required>
+            <option value="Jordan">Jordan</option>
+            <option value="Adidas">Adidas</option>
+            <option value="Yeezy">Yeezy</option>
+            <option value="Nike">Nike</option>
+            <option value="Off-White">Off-White</option>
+            <option value="Converse">Converse</option>
+            <option value="New Balance">New Balance</option>
+        </select>
+        <label class="form-label mt-4" for="imageurl">Image URL (optional)</label>
         <input class="form-control" type="text" name="imageURL" id="image">
+        <div class="form-text"> By using a custom image URL, manual mode is enabled(no StockX API)</div>
 
-        <button class="btn btn-primary" type="submit">Add Sneaker</button>
+
+        <button class="btn btn-lg btn-primary mt-3" type="submit">Add Sneaker</button>
     </form>
 </div>

@@ -1,26 +1,35 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-sm navbar-light bg-transparent mt-2">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">SosuKicks</a>
-
+        
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-evenly" id="navbarNav">
             <ul class="navbar-nav">
                 <li>
-                    <a class="nav-link active" aria-current="page" href="/sneakers">All Sneakers</a>
-                </li>
-                <li>
+
                     <form method="GET" action="/sneakers/" class="d-inline-flex">
-                        <input class="form-control me-2" type="text" name="filter" placeholder="Search a sneaker..."
+
+                        <input id="searchBar"  type="text" name="filter" placeholder="Search a sneaker..."
                             aria-label="Search">
-                        <button class="btn btn-success" type="submit">Search</button>
+                        <button class="navbarButton" id="searchButton" type="submit">
+                            <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24px" height="24px">
+                                <path
+                                    d="M 9 2 C 5.1458514 2 2 5.1458514 2 9 C 2 12.854149 5.1458514 16 9 16 C 10.747998 16 12.345009 15.348024 13.574219 14.28125 L 14 14.707031 L 14 16 L 20 22 L 22 20 L 16 14 L 14.707031 14 L 14.28125 13.574219 C 15.348024 12.345009 16 10.747998 16 9 C 16 5.1458514 12.854149 2 9 2 z M 9 4 C 11.773268 4 14 6.2267316 14 9 C 14 11.773268 11.773268 14 9 14 C 6.2267316 14 4 11.773268 4 9 C 4 6.2267316 6.2267316 4 9 4 z" />
+                            </svg>
+                        </button>
+
                     </form>
+
                 </li>
                 <li>
-                    <div class="btn btn-info mx-2" id="helpButton">Help</div>
+                <button class="navbarButton" id="allSneakersButton" aria-current="page" onclick="renderAllSneakers()"> All Sneakers</button>
+                </li>
+
+                <li>
+                    <button  class="navbarButton" id="helpButton">Help</button>
                 </li>
             </ul>
         </div>

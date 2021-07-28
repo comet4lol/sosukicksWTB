@@ -38,7 +38,13 @@ const SneakerSchema = new Schema({
 			required: true
 		}
 	],
-	brand: String,
+	tags: [
+		{
+			type: [ String ],
+			enum: [ 'Jordan', 'Adidas', 'Yeezy', 'Nike', 'Off-White', 'Converse', 'New Balance' ],
+			required: true
+		}
+	],
 	sku: String,
 	image: {
 		type: String,

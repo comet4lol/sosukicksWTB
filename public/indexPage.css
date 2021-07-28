@@ -1,64 +1,105 @@
-ol,
-ul,
-li {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
 body {
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
+	font-size: 1.25em;
+	background-image: url('background.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-bottom: 100px;
 }
-:root {
-	--bs-color: #0f0f0f !important;
-	--main-black: #0f0f0f;
-	--main-white: #fbf5f3;
-	--main-purple: #6f25bf;
+.container {
+	margin: none !important;
 }
-nav {
-	background-color: var(--main-black);
-	color: var(--main-white);
+.topWTB {
+	width: 100%;
+	min-height: 22.5vh;
+	margin-top: 1vmax;
+	margin-bottom: 1vmax;
+	background-image: url('topWTB-01.svg');
+	background-position: center;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+@font-face {
+	font-family: 'Test';
+	src: url('OPTIImprovNewWideNine.otf');
 }
 
 .sneakerGrid {
-	flex-wrap: nowrap;
-	font-family: 'Bebas Neue', cursive;
+	font-family: 'Test', sans-serif, cursive;
+	font-weight: 400;
 }
+
 .sneaker {
 	flex-wrap: nowrap;
-	margin: 10%;
-	margin-left: 0;
+	margin: 3rem 1rem;
 	padding: 0;
+	text-transform: uppercase;
+	transition: 0.3s ease-out 50ms;
+}
+
+.sneakerHover:hover {
+	background-color: white;
+	border-radius: 5%;
+	padding: 1.5em;
+	margin: none;
+	box-shadow: 5px 5px 15px 5px rgba(104, 45, 197, 0.4);
 	cursor: pointer;
 }
+.navbarButton {
+	text-decoration: none;
+	color: black;
+	background: none;
+	border: 2px solid #682dc5;
+	border-radius: 0.90em;
+	padding: 0.4em 1.5em;
+	line-height: 1;
+	transition: 0.4s;
+}
+.navbarButton:hover,
+.navbarButton:focus {
+	box-shadow: inset 0 0 0 2em #682dc5;
+	color: white;
+}
+#helpButton {
+	margin-left: 1.25em;
+}
+#searchButton {
+	margin-right: 1.25em;
+}
+#searchBar {
+	padding: 0.4em 1.5em;
+	line-height: 1;
+	margin-right: 1.25em;
+	border-radius: 0.90em;
+}
+
 .sneakerTitle {
 	margin: 0.25rem;
 	text-align: left;
-	font-size: 1.5em;
+	/* font-size: 20px; */
+	font-size: 1.25vmax;
 }
 .sneakerSizes {
 	color: #672dc5;
 }
-/* @media (hover: hover) {
-	.sneaker:hover {
-		filter: grayscale(80%) blur(1px);
-		color: gray;
-		cursor: pointer;
-		transition: all 280ms ease-in-out;
-		display: block;
-	}
-} */
-footer {
-	height: 15%;
+.sneakerImage {
 	width: 100%;
+	height: auto;
+}
+footer {
+	height: min-content;
+	width: 100%;
+	font-size: 1.1vmax;
 	margin-top: 0.5em;
 	background-color: black;
 	color: white;
 	text-align: center;
-	font-size: 1.25em;
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	margin-bottom: 0px;
 }
 footer span:hover {
 	color: lightgrey;
@@ -74,9 +115,11 @@ footer a {
 }
 footer a img {
 	width: 70px;
+	transition: 0.2s ease-in-out 25ms;
 }
 footer a img:hover {
 	filter: grayscale(80%);
+	width: 100px;
 }
 .popupWindow {
 	display: none;
@@ -90,7 +133,6 @@ footer a img:hover {
 	height: 100%;
 	display: grid;
 	place-items: center;
-	/* overflow: visible; */
 	background-color: rgb(0, 0, 0);
 	background-color: rgba(0, 0, 0, 0.4);
 }
@@ -103,4 +145,29 @@ footer a img:hover {
 	border: 3px solid #000000;
 	border-radius: 10px;
 	width: 50%;
+	height: min-content;
+}
+@media only screen and (max-width: 767px) {
+	.sneaker {
+		margin: 0px;
+	}
+	.sneakerTitle {
+		text-align: center;
+		font-size: 2.5vmax;
+	}
+	.navbar-nav li {
+		margin: 0px;
+		margin-top: 1.25em;
+	}
+	#helpButton {
+		margin-left: 0px;
+		margin-top: 1.25em;
+	}
+	#allSneakersButton {
+		margin-right: 0px;
+		margin-top: 1.25em;
+	}
+	.popupWindowContent {
+		font-size: 1.5vmax;
+	}
 }

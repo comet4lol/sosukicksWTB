@@ -2,9 +2,6 @@ body {
 	background-color: red;
 	background-image: url("G:\Node\sosukicksWTB");
 }
-* {
-	font-family: 'Bebas Neue', cursive;
-}
 :root {
 	--bs-color: #0f0f0f;
 	--main-black: #0f0f0f;
