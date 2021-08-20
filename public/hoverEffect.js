@@ -3,7 +3,6 @@ if (
 	window.location.href == 'http://localhost:3000/sneakers' ||
 	window.location.href == 'http://localhost:3000/sneakers/?filter='
 ) {
-	console.dir(allSneakersButton);
 	allSneakersButton.style.backgroundColor = '#682dc5';
 	allSneakersButton.style.color = '#ffffff';
 }

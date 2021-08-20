@@ -115,11 +115,7 @@ footer a {
 }
 footer a img {
 	width: 70px;
-	transition: 0.2s ease-in-out 25ms;
-}
-footer a img:hover {
-	filter: grayscale(80%);
-	width: 100px;
+	/* transition: 0.2s ease-in-out 25ms; */
 }
 .popupWindow {
 	display: none;

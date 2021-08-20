@@ -10,7 +10,8 @@ const stockX = new StockXAPI();
 app.engine('ejs', ejsMate);
 
 module.exports.renderHomePage = (req, res) => {
-	res.render('../views/home.ejs');
+	// res.render('../views/home.ejs');
+	res.redirect('/sneakers');
 };
 module.exports.renderIndexPage = async (req, res) => {
 	if (req.query != {} || (req.query.filter != undefined && req.query.filter != '')) {
@@ -75,14 +76,13 @@ module.exports.addSneakerToDB = async (req, res, next) => {
 	try {
 		const { searchTerm, sizesNeeded, password, imageURL, tags } = req.body;
 
-		console.log(tags);
-
 		if (password === process.env.ADMIN_PASSWORD) {
+			const searchResults = await stockX.searchProducts(searchTerm, { limit: 1 });
 			if (imageURL != '' || imageURL != undefined) {
 				let sneaker = new Sneaker({
 					model: searchTerm,
 					sizesNeeded,
-					sku: 'manual',
+					sku: searchResults[0].pid ? searchResults[0].pid : 'manual',
 					tags,
 					image: imageURL
 				});
@@ -90,7 +90,6 @@ module.exports.addSneakerToDB = async (req, res, next) => {
 				await sneaker.save();
 				res.redirect('/sneakers');
 			} else {
-				const searchResults = await stockX.searchProducts(searchTerm, { limit: 1 });
 				let sneaker = new Sneaker({
 					model: searchResults[0].name,
 					sizesNeeded,
