@@ -4,7 +4,12 @@ const Sneaker = require('../models/sneaker');
 const StockXAPI = require('stockx-api');
 const stockX = new StockXAPI();
 
-mongoose.connect('mongodb://localhost:27017/sosukicks', {
+require('dotenv').config();
+
+const dbURL = process.env.DB_URL
+console.log(dbURL)
+
+mongoose.connect(dbURL, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true
@@ -13,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/sosukicks', {
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error!'));
 db.once('open', () => {
-	console.log('Successfully conected to local database!');
+	console.log('Successfully conected to  database!');
 });
 
 let getRandomSize = () => {
@@ -30,14 +35,13 @@ let fiftyPercent = () => {
 	if (Math.random() > 0.47) return true;
 	else return false;
 };
+console.log('right before seedDB() ');
 const seedDB = async () => {
-	await Sneaker.deleteMany({});
+	if (Sneaker.find({}).length > 0) await Sneaker.deleteMany({});
+	
 	for (let i = 0; i <= 15; i++) {
 		const randomBrandNumber = Math.floor(Math.random() * 3);
-		// const randomSizesNeeded = [];
-		// for (let j = 0; j < 3; j++) {
-		// 	randomSizesNeeded.push(getRandomSize());
-		// }
+
 		let randomBrand = brands[randomBrandNumber].brand;
 		if (fiftyPercent() && randomBrand == 'Nike') randomBrand += '  Dunk Low';
 		else if (fiftyPercent() && randomBrand == 'Nike') randomBrand += '  Travis Scott';
@@ -51,17 +55,21 @@ const seedDB = async () => {
 		else if (fiftyPercent() && randomBrand == 'Jordan') randomBrand += '  Retro 4';
 		else if (fiftyPercent() && randomBrand == 'Jordan') randomBrand += ' 1 Low';
 		console.log(randomBrand);
-		const randomProducts = await stockX.searchProducts(randomBrand, { limit: 8 });
+		// const randomProducts = await stockX.newSearchProducts(randomBrand, { limit: 8 });
+		console.log('Successfully looked up stockx products');
 		for (let k = 0; k < 3; k++) {
 			let randomSizesNeeded = getRandomSizes(3);
+			
 			const item = new Sneaker({
-				model: randomProducts[k].name,
+				model: /* randomProducts[k].name */ "PLACEHOLDER" ,
 				sizesNeeded: randomSizesNeeded,
-				brand: brands[randomBrandNumber].brand,
-				sku: randomProducts[k].pid,
-				image: randomProducts[k].image
+				// brand: brands[randomBrandNumber].brand,
+				sku: /*randomProducts[k].pid */ "testing mode",
+				image: /*randomProducts[k].image */ "https://socialistmodernism.com/wp-content/uploads/2017/07/placeholder-image.png"
 			});
+			console.log(`Trying to save ${item}`);
 			await item.save();
+			console.log(`Successfully saved ${item}`);
 			// console.log(item);
 		}
 		console.log('Seeded Item to DB.');

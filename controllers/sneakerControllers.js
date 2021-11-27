@@ -74,15 +74,19 @@ module.exports.renderEditPage = async (req, res) => {
 
 module.exports.addSneakerToDB = async (req, res, next) => {
 	try {
+		console.log(req.body);
 		const { searchTerm, sizesNeeded, password, imageURL, tags } = req.body;
 
-		if (password === process.env.ADMIN_PASSWORD) {
-			const searchResults = await stockX.searchProducts(searchTerm, { limit: 1 });
+		if (password === "tothemoon") {
+			console.log("before stockX search")
+			//const searchResults = await stockX.searchProducts(searchTerm, { limit: 1 });
+			
 			if (imageURL != '' || imageURL != undefined) {
+				console.log("after stockx search");
 				let sneaker = new Sneaker({
 					model: searchTerm,
 					sizesNeeded,
-					sku: searchResults[0].pid ? searchResults[0].pid : 'manual',
+					sku: 'manual',
 					tags,
 					image: imageURL
 				});
