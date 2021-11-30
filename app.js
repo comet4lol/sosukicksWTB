@@ -12,8 +12,6 @@ const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const dbURL = process.env.DB_URL
-console.log(dbURL)
-
 mongoose.connect(dbURL, {
 	useNewUrlParser: true,
 	useCreateIndex: true,

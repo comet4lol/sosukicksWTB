@@ -7,6 +7,9 @@ const Fuse = require('fuse.js');
 const StockXAPI = require('stockx-api');
 const stockX = new StockXAPI();
 
+
+require('dotenv').config();
+const adminPassword = process.env.ADMIN_PASSWORD;
 app.engine('ejs', ejsMate);
 
 module.exports.renderHomePage = (req, res) => {
@@ -74,55 +77,34 @@ module.exports.renderEditPage = async (req, res) => {
 
 module.exports.addSneakerToDB = async (req, res, next) => {
 	try {
-		console.log(req.body);
-		const { searchTerm, sizesNeeded, password, imageURL, tags } = req.body;
 
-		if (password === "tothemoon") {
-			console.log("before stockX search")
-			//const searchResults = await stockX.searchProducts(searchTerm, { limit: 1 });
-			
-			if (imageURL != '' || imageURL != undefined) {
-				console.log("after stockx search");
-				let sneaker = new Sneaker({
-					model: searchTerm,
+		const { searchTerm, sizesNeeded, password, imageURL, tags, sku } = req.body;
+		sizesNeeded.forEach( (size) => typeof(size) );
+		if ( (searchTerm && sizesNeeded && imageURL && tags && sku) && password == adminPassword) {
+				let sneaker = new Sneaker ({
+					model : searchTerm,
 					sizesNeeded,
-					sku: 'manual',
 					tags,
+					sku,
 					image: imageURL
 				});
-				// console.log(sneaker);
 				await sneaker.save();
 				res.redirect('/sneakers');
-			} else {
-				let sneaker = new Sneaker({
-					model: searchResults[0].name,
-					sizesNeeded,
-					sku: searchResults[0].pid,
-					tags,
-					image: searchResults[0].image
-				});
-				// console.log(sneaker);
-				await sneaker.save();
-				res.redirect('/sneakers');
-			}
-		}
-	} catch (e) {
+			} else throw new Error("Missing parameters!");
+		} catch (e) {
 		next(e);
 	}
 };
 module.exports.editSneaker = async (req, res) => {
-	let { model, sizesNeeded } = req.body;
+	let { model, sizesNeeded,imageURL } = req.body;
 	const { id } = req.params;
-	if (sizesNeeded) {
-		await Sneaker.findByIdAndUpdate(id, { model, sizesNeeded });
-	} else await Sneaker.findByIdAndUpdate(id, { model });
-	res.redirect('/sneakers/admin');
+	await Sneaker.findByIdAndUpdate(id, { model, sizesNeeded, image: imageURL }).then(res.redirect('/sneakers/admin'));
 };
 module.exports.adminDelete = async (req, res) => {
 	const { markedSneakers } = req.body;
 	markedSneakers.forEach(async function(sneakerId) {
 		await Sneaker.findByIdAndDelete(sneakerId);
-		//console.log(deletion);
+
 		res.redirect('/sneakers/admin');
 	});
 };

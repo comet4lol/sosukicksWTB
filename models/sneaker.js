@@ -8,7 +8,7 @@ const SneakerSchema = new Schema({
 	},
 	sizesNeeded: [
 		{
-			type: [ Number ],
+			type:  [Number] ,
 			enum: [
 				35,
 				35.5,
@@ -45,7 +45,10 @@ const SneakerSchema = new Schema({
 			required: true
 		}
 	],
-	sku: String,
+	sku: {
+		type: String,
+		required:true
+	},
 	image: {
 		type: String,
 		required: true
